@@ -182,6 +182,16 @@ function calcPlus(player) {
 	return total;
 }
 
+function countFilledTop(player) {
+	var total = 0;
+	for(var x = 1; x < 7; x++) {
+		if(inputs[player][x].value != "") {
+			total++;
+		}
+	}
+	return total;
+}
+
 function calcTotal(player) {
 	let asdtotal = 0;
 	for(var x = 7; x < 18; x++) {
@@ -195,7 +205,7 @@ function calcPlayer(player) {
 	let asdplus = calcPlus(player);
 
 	inputs[player][7].value = (top != 0) ? top : "";
-	inputs[player][8].value = (top >= 63) ? "50" : "";
+	inputs[player][8].value = (top >= 63) ? "50" : ((countFilledTop(player) == 6) ? "-" : "");
 	if(asdplus == 0) {
 	    plus[player].innerText = "";
 	}  else if(asdplus > 0) {
